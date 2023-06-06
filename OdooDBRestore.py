@@ -67,7 +67,7 @@ if confirm.lower() != "s":
 # Proceso de restauración
 action_odoo_server("stop")
 copy_filestore(filestore_folder)
-set_filestore_permissions(filestore_folder)
+set_filestore_permissions(database_name)
 create_database(database_name)
 restore_database(database_name, dump_file)
 action_odoo_server("start")
