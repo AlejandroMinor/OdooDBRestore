@@ -31,7 +31,7 @@ python3 OdooDBRestore.py
 ## Ejemplo
 
 ```shell
-➜  python3 /OdooDBRestore/OdooDBRestore.py 
+➜  python3 OdooDBRestore/OdooDBRestore.py 
 ➜  Ruta de la carpeta filestore: home/minor/Escritorio/Develop_Junio_2023
 ➜  Ruta del archivo SQL de respaldo: home/minor/Escritorio/dump.sql
 ```
