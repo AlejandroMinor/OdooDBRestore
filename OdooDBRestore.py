@@ -6,16 +6,19 @@ class OdooDBRestore:
         print(f"Odoo server {action} \n")
         subprocess.run(["sudo", "/etc/init.d/odoo", action])
         print(f"➡ Odoo server {action}ed \n")
+
     def copy_filestore(self, filestore_folder):
         print("Copiando filestore. Este proceso puede tardar varios minutos.\n")
         subprocess.run(["sudo", "cp", "-R", filestore_folder, "/var/lib/odoo/.local/share/Odoo/filestore/"])
         print("➡ Filestore copiado.\n")
+
     def set_filestore_permissions(self,filestore_folder):
         print("Cambiando permisos de filestore.\n")
         self.get_filestore_permissions()
         subprocess.run(["sudo", "chown", "-R", "odoo:odoo", f"/var/lib/odoo/.local/share/Odoo/filestore/{filestore_folder}"])
         print("➡ Permisos cambiados.\n")
         self.get_filestore_permissions()
+
     def get_filestore_permissions(self):
         result = subprocess.run(["ls", "-l", "/var/lib/odoo/.local/share/Odoo/filestore/"], capture_output=True, text=True)
         print(result.stdout)
@@ -33,28 +36,33 @@ class OdooDBRestore:
         print("➡ Base de datos restaurada.\n")
 
     def main(self):
-        filestore_folder = input("Ruta de la carpeta filestore (Ejem /home/minor/Escritorio/filestore_folder_name):")
-        if not os.path.exists(filestore_folder):
-            print("La ruta especificada no existe.")
-            exit()
-        
-        database_name = os.path.basename(filestore_folder)
-        print(f"Nombre de la base de datos sera {database_name}")
-        dump_file = input("Ruta del archivo SQL de respaldo (Ejem /home/minor/Escritorio/dump.sql): ")
-        if not os.path.exists(dump_file):
-            print("El archivo especificado no existe.")
-            exit()
+        while True:
+            while True:
+                filestore_folder = input("Ruta de la carpeta filestore (Ejem /home/minor/Escritorio/filestore_folder_name):")
+                if not os.path.exists(filestore_folder):
+                    print("La ruta especificada no existe.")
+                else:
+                    database_name = os.path.basename(filestore_folder)
+                    print(f"Nombre de la base de datos sera {database_name}")
+                    break
+                
+            while True:
+                dump_file = input("Ruta del archivo SQL de respaldo (Ejem /home/minor/Escritorio/dump.sql): ")
+                if not os.path.isfile(dump_file) or not dump_file.endswith(".sql"):
+                    print("El archivo especificado no es valido o no existe.")
+                else:
+                    break
 
-        # Resumen de datos
-        print(f"Resumen de datos:\n"
-                f"Ruta de la carpeta filestore: {filestore_folder}\n"
-                f"Nombre de la base de datos: {database_name}\n"
-                f"Ruta del archivo SQL de respaldo: {dump_file}\n")
+            # Resumen de datos
+            print(f"Resumen de datos:\n"
+                    f"Ruta de la carpeta filestore: {filestore_folder}\n"
+                    f"Nombre de la base de datos: {database_name}\n"
+                    f"Ruta del archivo SQL de respaldo: {dump_file}\n")
 
-        # Confirmación de accion a realizar
-        confirm = input("¿Desea continuar? (S/N): ")
-        if confirm.lower() != "s":
-            exit()
+            # Confirmación de accion a realizar
+            confirm = input("¿Desea continuar? (S/N): ")
+            if confirm.lower() == "s":
+                break
 
         # Proceso de restauración
         self.action_odoo_server("stop")
