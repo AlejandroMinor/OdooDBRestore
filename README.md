@@ -19,10 +19,9 @@ Este proyecto tiene como objetivo facilitar la restauración de una base de dato
 
 ## Cómo usar
 1. El nombre de la carpeta con el filestore y el nombre de la base de datos debe ser la misma
-2. Coloca el archivo "OdooDBRestore.py" en el mismo directorio que se encuentre la carpeta con el filestore
-3. Abre una terminal y y ejecuta el comando:
+2. Abre una terminal y y ejecuta el comando:
 ```shell
-python3 OdooDBRestore.py
+python3 OdooDBRestore/
 ```
 4.  Te pedira el nombre del directorio que almacena el filestore (este al estar en el mismo directorio que el archivo .py solo necesitara del nombre), este nombre tambien se usara para el nombre de la base de datos que se creara. 
 5. El proceso ira corriendo de manera automatica ejecutando las tareas una tras otra, hay que ser pacientes ya que algunas demoran algunos minutos. 
@@ -31,7 +30,7 @@ python3 OdooDBRestore.py
 ## Ejemplo
 
 ```shell
-➜  Escritorio python3 OdooDBRestore.py 
+➜  Escritorio python3 OdooDBRestore/ 
 ➜  Nombre de la base de datos y filestore: Develop_Junio_2023
 ➜  Ruta del archivo SQL de respaldo: home/minor/Escritorio/dump.sql
 ```
