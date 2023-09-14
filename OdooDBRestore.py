@@ -57,14 +57,18 @@ class OdooDBRestore:
                     f"Ruta de la carpeta filestore: {filestore_folder}\n"
                     f"Nombre de la base de datos: {database_name}\n"
                     f"Ruta del archivo SQL de respaldo: {dump_file}\n")
-
-            # Confirmación de accion a realizar
-            confirm = input("¿Desea continuar? (S/N): ")
+            confirm = input("¿Los datos son correctos? (S/N): ")
             if confirm.lower() == "s":
-                self.sequence_restore()
+                self.filestore_folder = filestore_folder
+                self.database_name = database_name
+                self.dump_file = dump_file
                 break
+            else:
+                print("Por favor ingrese los datos nuevamente.\n")
+
 
     def sequence_restore(self):
+        self.define_restore_paths()
         self.action_odoo_server("stop")
         self.copy_filestore(self.filestore_folder)
         self.set_filestore_permissions(self.database_name)
@@ -81,6 +85,7 @@ class OdooDBRestore:
                 self.database_name = os.path.basename(self.filestore_folder)
                 print(f"Nombre de la base de datos sera {self.database_name}")
                 break
+        return self.filestore_folder, self.database_name
     
     def define_dump_file(self):
         while True:
@@ -90,6 +95,7 @@ class OdooDBRestore:
             else:
                 self.dump_file = dump_file
                 break
+        return self.dump_file
 
     def validate_filestore(self, filestore_folder):
         if not os.path.exists(filestore_folder):
