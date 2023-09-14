@@ -17,7 +17,7 @@ class OdooDBRestore:
         self.filestore_folder = filestore_folder
         self.validate_filestore(self.filestore_folder)
         print("Copiando filestore. Este proceso puede tardar varios minutos.\n")
-        subprocess.run(["sudo", "cp", "-R", self.filestore_folder, "/var/lib/odoo/.local/share/Odoo/filestore/"])
+        subprocess.run(["sudo", "cp", "-R", self.filestore_folder, "/var/lib/odoo/.local/share/Odoo/filestore/","-v"])
         print("➡ Filestore copiado.\n")
 
     def set_filestore_permissions(self,filestore_folder):
