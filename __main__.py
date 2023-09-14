@@ -1,3 +1,3 @@
 import OdooDBRestore
 
-OdooDBRestore.OdooDBRestore().main()
+OdooDBRestore.OdooDBRestore().sequence_restore()
