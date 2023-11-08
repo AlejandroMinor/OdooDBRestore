@@ -79,9 +79,7 @@ class OdooDBRestore:
     def define_filestore(self):
         while True:
             self.filestore_folder = input("Ruta de la carpeta filestore (Ejem /home/minor/Escritorio/filestore_folder_name):")
-            if not os.path.exists(self.filestore_folder):
-                print("La ruta especificada no existe.")
-            else:
+            if self.validate_filestore(self.filestore_folder):
                 self.database_name = os.path.basename(self.filestore_folder)
                 print(f"Nombre de la base de datos sera {self.database_name}")
                 break
@@ -100,7 +98,18 @@ class OdooDBRestore:
     def validate_filestore(self, filestore_folder):
         if not os.path.exists(filestore_folder):
             print(f"La ruta '{filestore_folder}' no existe")
-            self.define_filestore()
+            return False
+        
+        if not os.path.isdir(filestore_folder):
+            print(f"La ruta '{filestore_folder}' no es una carpeta")
+            return False
+        
+        if filestore_folder.endswith("/"):
+            print(f"La ruta '{filestore_folder}' no debe terminar con '/'")
+            return False
+        
+        else:
+            return True
     
     def validate_dump_file(self, dump_file):
         if not os.path.isfile(dump_file) or not dump_file.endswith(".sql"):
