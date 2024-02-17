@@ -15,7 +15,4 @@ setup(
     url=URL,
     packages=find_packages(),
     include_package_data=True,
-    install_requires=[
-        'wheel==0.42.0',
-    ],
 )
