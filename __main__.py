@@ -1,5 +1,5 @@
-import OdooDBRestore
-import db_restore_gui
+import odoo_db_restore.OdooDBRestore as OdooDBRestore
+import odoo_db_restore.db_restore_gui as db_restore_gui
 
 if __name__ == "__main__":
 

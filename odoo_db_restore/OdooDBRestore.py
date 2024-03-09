@@ -3,10 +3,10 @@ import subprocess
 
 class OdooDBRestore:
 
-    def __init__(self):
-        self.filestore_folder = ""
-        self.database_name = ""
-        self.dump_file = ""
+    def __init__(self, filestore_folder="", database_name="", dump_file=""):
+        self.filestore_folder = filestore_folder
+        self.database_name = database_name
+        self.dump_file = dump_file
         
     def action_odoo_server(self, action):
         print(f"Odoo server {action} \n")
