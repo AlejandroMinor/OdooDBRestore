@@ -10,24 +10,25 @@ class DbRestoreGui:
     def open_gui_interface(self):
         window = tk.Tk()
         window.title("Odoo DB Restore")
+        window.geometry("500x250")
+        window.resizable(width=False, height=False)
 
-        tk.Label(window, text="Archivo sql:").pack()
-
-        self.file_path = tk.Entry(window, width=50)
-        self.file_path.pack()
-
-        btn_select_file = tk.Button(window, text="Seleccionar archivo sql", command=self.select_file)
-        btn_select_file.pack()
-
-        tk.Label(window, text="Ruta del filestore a copiar:").pack()
-        self.output_path = tk.Entry(window, width=50)
-        self.output_path.pack()
+        tk.Label(window, text="Ruta del filestore a copiar:").place(x=20, y=10)
+        self.output_path = tk.Entry(window, width=58)
+        self.output_path.place(x=20, y=30)
 
         btn_output_path = tk.Button(window, text="Seleccionar ruta", command=self.select_output_path)
-        btn_output_path.pack()
+        btn_output_path.place(x=20, y=55)
+
+        tk.Label(window, text="Archivo SQL:").place(x=20, y=110)
+        self.file_path = tk.Entry(window, width=58)
+        self.file_path.place(x=20, y=130)
+
+        btn_select_file = tk.Button(window, text="Seleccionar archivo SQL", command=self.select_file)
+        btn_select_file.place(x=20, y=155)
 
         btn_restore = tk.Button(window, text="Restaurar", command=lambda: self.restore(self.file_path.get(), self.output_path.get()))
-        btn_restore.pack()
+        btn_restore.place(x=200, y=200)
 
         window.mainloop()
     def select_file(self):
@@ -70,3 +71,4 @@ class DbRestoreGui:
         return True
     
 
+DbRestoreGui().open_gui_interface()
