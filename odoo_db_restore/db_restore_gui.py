@@ -1,7 +1,7 @@
 import tkinter as tk
 import os
 from tkinter import filedialog
-import odoo_db_restore.OdooDBRestore
+from odoo_db_restore.OdooDBRestore import OdooDBRestore
 class DbRestoreGui:
     def __init__(self):
         self.file_path = None
@@ -50,7 +50,7 @@ class DbRestoreGui:
     def restore(self, slq_file, filestore_folder):
         if self.verify_fields(slq_file, filestore_folder) and self.confirm_action():    
             database_name = os.path.basename(filestore_folder)
-            restore_obj = OdooDBRestore.OdooDBRestore(filestore_folder, database_name, slq_file)
+            restore_obj = OdooDBRestore(filestore_folder, database_name, slq_file)
             restore_obj.action_odoo_server("stop")
             restore_obj.copy_filestore(filestore_folder)
             restore_obj.set_filestore_permissions(database_name)
