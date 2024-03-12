@@ -3,7 +3,7 @@ from setuptools import find_packages, setup
 
 HERE = pathlib.Path(__file__).parent
 
-VERSION = '0.2.2' 
+VERSION = '0.3.2' 
 PACKAGE_NAME = 'odoo_db_restore' 
 AUTHOR = 'Alejandro Minor' 
 URL = 'https://github.com/alejandrominor' 
