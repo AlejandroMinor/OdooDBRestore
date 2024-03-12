@@ -1,7 +1,7 @@
 import tkinter as tk
 import os
 from tkinter import filedialog
-import OdooDBRestore
+import odoo_db_restore.OdooDBRestore
 class DbRestoreGui:
     def __init__(self):
         self.file_path = None
