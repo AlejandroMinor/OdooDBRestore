@@ -70,5 +70,3 @@ class DbRestoreGui:
             return False
         return True
     
-
-DbRestoreGui().open_gui_interface()
