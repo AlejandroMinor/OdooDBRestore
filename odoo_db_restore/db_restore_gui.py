@@ -47,7 +47,7 @@ class DbRestoreGui:
         self.output_path.insert(0, path)
 
     def restore(self, slq_file, filestore_folder):
-        if self.confirm_action():    
+        if self.verify_fields(slq_file, filestore_folder) and self.confirm_action():    
             database_name = os.path.basename(filestore_folder)
             restore_obj = OdooDBRestore.OdooDBRestore(filestore_folder, database_name, slq_file)
             restore_obj.action_odoo_server("stop")
@@ -63,4 +63,10 @@ class DbRestoreGui:
     def confirm_action(self):
         return tk.messagebox.askyesno("Confirmación", "¿Está seguro de realizar esta acción?")
 
+    def verify_fields(self, slq_file, filestore_folder):
+        if not slq_file or not filestore_folder:
+            self.show_error_message("Debe seleccionar un archivo sql y una ruta para el filestore")
+            return False
+        return True
+    
 
