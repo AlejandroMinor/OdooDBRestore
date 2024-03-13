@@ -1,4 +1,4 @@
-# OdooDBRestore | Proyecto de Restauración Manual de Base de Datos de Odoo
+# OdooDBRestore | Restauración Manual de Base de Datos de Odoo
 
 Este proyecto tiene como objetivo facilitar la restauración de una base de datos de Odoo junto con el correspondiente filestore. Proporciona funciones para detener y reiniciar el servidor de Odoo, copiar y establecer permisos en el filestore, crear una nueva base de datos y restaurar una base de datos existente a partir de un archivo de respaldo SQL.
 
