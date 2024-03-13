@@ -1,11 +1,10 @@
-import OdooDBRestore
-import db_restore_gui
+import db_restore_tools
 
 if __name__ == "__main__":
 
     options = {
-        '1': OdooDBRestore.OdooDBRestore().sequence_restore,
-        '2': db_restore_gui.DbRestoreGui().open_gui_interface
+        '1': db_restore_tools.OdooDBRestore().sequence_restore,
+        '2': db_restore_tools.DbRestoreGui().open_gui_interface
     }
 
     while True:
