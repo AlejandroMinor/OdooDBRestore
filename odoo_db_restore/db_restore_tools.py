@@ -149,7 +149,7 @@ class DbRestoreGui:
 
         window.mainloop()
     def select_file(self):
-        archivo = filedialog.askopenfilename(title="Seleccionar archivo", filetypes=[("Archivos .slq", "*.sql"), ("Archivos .dump", "*.dump")])
+        archivo = filedialog.askopenfilename(title="Seleccionar archivo", filetypes=[("Archivos .sql", "*.sql"), ("Archivos .dump", "*.dump")])
         self.file_path.delete(0, tk.END)  
         self.file_path.insert(0, archivo)  
 
